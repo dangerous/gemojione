@@ -7,14 +7,14 @@ describe String, 'with Emoji extensions' do
     it 'should replace unicode moji with an img tag' do
       base_string = "I ❤ Emoji"
       replaced_string = base_string.with_emoji_images
-      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\"> Emoji", replaced_string
+      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\"> Emoji", replaced_string
     end
   end
 
   describe '#image_url' do
     it 'should generate image_url' do
-      assert_equal 'http://localhost:3000/1F300.png', '🌀'.image_url
-      assert_equal 'http://localhost:3000/1F300.png', 'cyclone'.image_url
+      assert_equal 'http://localhost:3000/1F300.svg', '🌀'.image_url
+      assert_equal 'http://localhost:3000/1F300.svg', 'cyclone'.image_url
     end
   end
 

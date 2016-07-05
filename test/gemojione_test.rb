@@ -5,17 +5,17 @@ require File.absolute_path File.dirname(__FILE__) + '/test_helper'
 describe Gemojione do
   describe "image_url_for_name" do
     it 'should generate url' do
-      assert_equal 'http://localhost:3000/1F300.png', Gemojione.image_url_for_name('cyclone')
+      assert_equal 'http://localhost:3000/1F300.svg', Gemojione.image_url_for_name('cyclone')
     end
 
     it 'should generate url' do
-      assert_equal 'http://localhost:3000/1F44D.png', Gemojione.image_url_for_name('+1')
+      assert_equal 'http://localhost:3000/1F44D.svg', Gemojione.image_url_for_name('+1')
     end
   end
 
   describe "image_url_for_unicode_moji" do
     it 'should generate url' do
-      assert_equal 'http://localhost:3000/1F300.png', Gemojione.image_url_for_unicode_moji('🌀')
+      assert_equal 'http://localhost:3000/1F300.svg', Gemojione.image_url_for_unicode_moji('🌀')
     end
   end
 
@@ -57,12 +57,12 @@ describe Gemojione do
 
   describe 'image_tag_for_moji' do
     it 'should generate a clean img tag if default_size undefined' do
-      assert_equal '<img alt="🌀" class="emoji" src="http://localhost:3000/1F300.png">', Gemojione.image_tag_for_moji('🌀')
+      assert_equal '<img alt="🌀" class="emoji" src="http://localhost:3000/1F300.svg">', Gemojione.image_tag_for_moji('🌀')
     end
 
     it 'should generate a img tag with style tag if default_size is defined' do
       Gemojione.default_size='42px'
-      assert_equal '<img alt="🌀" class="emoji" src="http://localhost:3000/1F300.png" style="width: 42px;">', Gemojione.image_tag_for_moji('🌀')
+      assert_equal '<img alt="🌀" class="emoji" src="http://localhost:3000/1F300.svg" style="width: 42px;">', Gemojione.image_tag_for_moji('🌀')
       Gemojione.default_size=nil
     end
   end
@@ -74,17 +74,17 @@ describe Gemojione do
 
     it 'should escape html in non html_safe aware strings' do
       replaced_string = Gemojione.replace_unicode_moji_with_images('❤<script>')
-      assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\">&lt;script&gt;", replaced_string
+      assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\">&lt;script&gt;", replaced_string
     end
 
     it 'should replace unicode moji with img tag' do
       base_string = "I ❤ Emoji"
       replaced_string = Gemojione.replace_unicode_moji_with_images(base_string)
-      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\"> Emoji", replaced_string
+      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\"> Emoji", replaced_string
     end
 
     it 'should escape regex breaker mojis' do
-      assert_equal "<img alt=\"*⃣\" class=\"emoji\" src=\"http://localhost:3000/002A-20E3.png\">", Gemojione.replace_unicode_moji_with_images('*⃣')
+      assert_equal "<img alt=\"*⃣\" class=\"emoji\" src=\"http://localhost:3000/002A-20E3.svg\">", Gemojione.replace_unicode_moji_with_images('*⃣')
     end
 
     it 'should handle nil string' do
@@ -99,7 +99,7 @@ describe Gemojione do
           Gemojione.replace_unicode_moji_with_images(string)
         end
 
-        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\">&lt;script&gt;", replaced_string
+        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\">&lt;script&gt;", replaced_string
       end
 
       it 'should escape non html_safe? strings in all strings' do
@@ -119,7 +119,7 @@ describe Gemojione do
           Gemojione.replace_unicode_moji_with_images(string)
         end
 
-        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\"><a href=\"harmless\">", replaced_string
+        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\"><a href=\"harmless\">", replaced_string
       end
 
       it 'should always return an html_safe string for emoji' do
@@ -150,13 +150,13 @@ describe Gemojione do
 
     it 'should escape html in non html_safe aware strings' do
       replaced_string = Gemojione.replace_named_moji_with_images(':heart:<script>')
-      assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\">&lt;script&gt;", replaced_string
+      assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\">&lt;script&gt;", replaced_string
     end
 
     it 'should replace coded moji with img tag' do
       base_string = "I :heart: Emoji"
       replaced_string = Gemojione.replace_named_moji_with_images(base_string)
-      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\"> Emoji", replaced_string
+      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\"> Emoji", replaced_string
     end
 
     it 'should handle nil string' do
@@ -171,7 +171,7 @@ describe Gemojione do
           Gemojione.replace_named_moji_with_images(string)
         end
 
-        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\">&lt;script&gt;", replaced_string
+        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\">&lt;script&gt;", replaced_string
       end
 
       it 'should escape non html_safe? strings in all strings' do
@@ -191,7 +191,7 @@ describe Gemojione do
           Gemojione.replace_named_moji_with_images(string)
         end
 
-        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.png\"><a href=\"harmless\">", replaced_string
+        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/2764.svg\"><a href=\"harmless\">", replaced_string
       end
 
       it 'should always return an html_safe string for emoji' do

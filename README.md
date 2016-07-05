@@ -43,16 +43,16 @@ Image Replacement APIs:
 
 ```ruby
 > Gemojione.replace_unicode_moji_with_images('I ❤ Emoji')
-=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/2764.png\"> Emoji"
+=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/2764.svg\"> Emoji"
 
 > Gemojione.replace_named_moji_with_images('I :heart: Emoji')
-=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/2764.png\"> Emoji"
+=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/2764.svg\"> Emoji"
 
 > Gemojione.image_url_for_unicode_moji('❤')
-=> "http://localhost:3000/assets/emoji/2764.png"
+=> "http://localhost:3000/assets/emoji/2764.svg"
 
 > Gemojione.image_url_for_name('heart')
-=> "http://localhost:3000/assets/emoji/2764.png"
+=> "http://localhost:3000/assets/emoji/2764.svg"
 ```
 
 Emoji Library Index APIs:
@@ -81,7 +81,7 @@ You can also serve the assets directly from the gem in your rails app:
 ```ruby
 # config/application.rb
 config.assets.paths << Gemojione.index.images_path
-config.assets.precompile << "emoji/*.png"
+config.assets.precompile << "emoji/*.svg"
 ```
 
 String Helper Methods:
@@ -96,11 +96,11 @@ and call methods directly on your string to return the same results:
 
 ```ruby
 > 'I ❤ Emoji'.with_emoji_images
-=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/2764.png\"> Emoji"
+=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/2764.svg\"> Emoji"
 
 > 'heart'.image_url
 > '❤'.image_url
-=> "http://localhost:3000/assets/emoji/2764.png"
+=> "http://localhost:3000/assets/emoji/2764.svg"
 
 > 'heart'.emoji_data
 > '❤'.emoji_data
